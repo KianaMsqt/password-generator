@@ -92,9 +92,6 @@ var upperCasedCharacters = [
 function getPasswordOptions() {
 
 	/**
-	* Character types
-		* Numeric
-		* Special characters ($@%&*, etc)
 	* Code should validate for each input and at least one character type should be selected
 	* Once prompts are answered then the password should be generated and displayed in an alert or written to the page
 	*/
@@ -134,10 +131,9 @@ function getPasswordOptions() {
 			return false;
 		}
 	}
-	lowercase = includingLowerCase();
 	/** lowercase */
-
-
+	
+	
 	/** UPPERCASE */
 	var includingUpperCase = function() {
 		if( confirm( "Do you want the password includes in uppercase?" ) ) {
@@ -146,9 +142,8 @@ function getPasswordOptions() {
 			return false;
 		}
 	}
-	uppercase = includingUpperCase();
 	/** uppercase */
-
+	
 	/** NUMERIC */
 	var includingNumber = function() {
 		if( confirm( "Do you want the password includes in numbers?" ) ) {
@@ -157,9 +152,8 @@ function getPasswordOptions() {
 			return false;
 		}
 	}
-	numeric = includingNumber();
 	/** numeric */
-
+	
 	/** SPECIAL CHARACTERS */
 	var includingSpecialChar = function() {
 		if( confirm( "Do you want the password includes in special characters ($@%&*, etc)?" ) ) {
@@ -168,8 +162,21 @@ function getPasswordOptions() {
 			return false;
 		}
 	}
-	specialCharacters = includingSpecialChar();
 	//** special characters */
+	
+	// Validating if at least one character type is selected
+	var checkCharacterType = function() {
+		lowercase = includingLowerCase();
+		uppercase = includingUpperCase();
+		numeric = includingNumber();
+		specialCharacters = includingSpecialChar();
+		while ( !(lowercase || uppercase || numeric || specialCharacters) ) {
+			alert( "Please confirm at least one character type." )
+			checkCharacterType();
+		}
+	}
+
+	checkCharacterType();
 
 }
 
