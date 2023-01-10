@@ -138,6 +138,18 @@ function getPasswordOptions() {
 	lowercase = includingLowerCase();
 	/** lowercase */
 
+
+	/** UPPERCASE */
+	var includingUpperCase = function() {
+		if( confirm( "Do you want the password includes in uppercase?" ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	uppercase = includingUpperCase();
+	/** uppercase */
+
 }
 
 // Function for getting a random element from an array
