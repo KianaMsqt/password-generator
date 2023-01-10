@@ -160,6 +160,17 @@ function getPasswordOptions() {
 	numeric = includingNumber();
 	/** numeric */
 
+	/** SPECIAL CHARACTERS */
+	var includingSpecialChar = function() {
+		if( confirm( "Do you want the password includes in special characters ($@%&*, etc)?" ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	specialCharacters = includingSpecialChar();
+	//** special characters */
+
 }
 
 // Function for getting a random element from an array
