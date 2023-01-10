@@ -103,29 +103,35 @@ function getPasswordOptions() {
 
 	
 	let passwordLength,
+		isInRange = false,
 		lowercase,
 		uppercase,
 		numeric,
 		specialCharacters;
 	
-	// Using condition to continue showing the prompt in case it was empty or canceled.
-	do {
-		let input = prompt("Please enter length of password.");
-		// Check if input is only number
-		if ( isNaN( input ) || input == null || input == "" ) {
-			input = prompt( "Please input only number." );
-		} else {
-			passwordLength = parseInt( input );
-		}
-	} while ( passwordLength == null || passwordLength == "" );
-	console.log( passwordLength );
-
-	// Check if input is in the range or not
-	if ( passwordLength < 10 || passwordLength > 64 ) {
+	/**  PASSWORD LENGTH */
+	var givePasswordLength = function ( message ) {
 		do {
-			passwordLength = prompt("At least 10 characters but no more than 64.");
-		} while ( passwordLength == null || passwordLength == "" );
+			var input = prompt( message );
+			input = parseInt( input );
+			message = "Enter password length."
+			while ( isNaN( input ) ) {
+				input = givePasswordLength( "Password length must be number." );
+				while ( input < 10 || input > 64 ) {
+					input = givePasswordLength( "Password length must be between 10 to 64." );
+				}
+			}
+		} while ( input == null || input == "" );
+		return input;
+		// TODO: If user enters a string starting with number but including NaN charachter function will return it as integer.
 	}
+
+	passwordLength = givePasswordLength("Enter password length.");
+	/**  password length */
+
+	/** LOWERCASE */
+
+	/** lowercase */
 
 }
 
