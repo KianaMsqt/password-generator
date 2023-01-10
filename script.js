@@ -93,7 +93,6 @@ function getPasswordOptions() {
 
 	/**
 	* Character types
-		* Uppercase
 		* Numeric
 		* Special characters ($@%&*, etc)
 	* Code should validate for each input and at least one character type should be selected
@@ -149,6 +148,17 @@ function getPasswordOptions() {
 	}
 	uppercase = includingUpperCase();
 	/** uppercase */
+
+	/** NUMERIC */
+	var includingNumber = function() {
+		if( confirm( "Do you want the password includes in numbers?" ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	numeric = includingNumber();
+	/** numeric */
 
 }
 
