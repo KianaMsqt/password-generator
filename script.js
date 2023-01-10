@@ -93,7 +93,6 @@ function getPasswordOptions() {
 
 	/**
 	* Character types
-		* Lowercase
 		* Uppercase
 		* Numeric
 		* Special characters ($@%&*, etc)
@@ -103,7 +102,6 @@ function getPasswordOptions() {
 
 	
 	let passwordLength,
-		isInRange = false,
 		lowercase,
 		uppercase,
 		numeric,
@@ -130,7 +128,14 @@ function getPasswordOptions() {
 	/**  password length */
 
 	/** LOWERCASE */
-
+	var includingLowerCase = function() {
+		if( confirm( "Do you want the password includes in lowercase?" ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	lowercase = includingLowerCase();
 	/** lowercase */
 
 }
