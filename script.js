@@ -92,8 +92,6 @@ var upperCasedCharacters = [
 function getPasswordOptions() {
 
 	/**
-	 * Length of password
-		 * At least 10 characters but no more than 64.
 	* Character types
 		* Lowercase
 		* Uppercase
@@ -110,14 +108,19 @@ function getPasswordOptions() {
 		numeric,
 		specialCharacters;
 	
-	// Using condition to continue showing the prompt in case it was emty or canceled.
+	// Using condition to continue showing the prompt in case it was empty or canceled.
 	do {
-		passwordLength = parseInt( prompt("length") );
+		let input = prompt("Please enter length of password.");
+		// Check if input is only number
+		if ( isNaN( input ) || input == null || input == "" ) {
+			input = prompt( "Please input only number." );
+		} else {
+			passwordLength = parseInt( input );
+		}
 	} while ( passwordLength == null || passwordLength == "" );
+	console.log( passwordLength );
 
-	console.log( typeof passwordLength );
-	// There is a problem in handling type of input
-
+	// Check if input is in the range or not
 	if ( passwordLength < 10 || passwordLength > 64 ) {
 		do {
 			passwordLength = prompt("At least 10 characters but no more than 64.");
