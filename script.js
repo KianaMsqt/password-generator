@@ -91,12 +91,6 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-	/**
-	* Code should validate for each input and at least one character type should be selected
-	* Once prompts are answered then the password should be generated and displayed in an alert or written to the page
-	*/
-
-	
 	let passwordLength,
 		lowercase,
 		uppercase,
@@ -117,7 +111,7 @@ function getPasswordOptions() {
 			}
 		} while ( input == null || input == "" );
 		return input;
-		// TODO: If user enters a string starting with number but including NaN charachter function will return it as integer.
+		// TODO: If user enters a string starting with number but including NaN character function will return it as integer.
 	}
 
 	passwordLength = givePasswordLength("Enter password length.");
@@ -178,18 +172,65 @@ function getPasswordOptions() {
 
 	checkCharacterType();
 
+	var passwordOptions = {
+		"passwordLength" : passwordLength,
+		"lowercase" : lowercase,
+		"uppercase" : uppercase, 
+		"numeric" : numeric,
+		"specialCharacters" : specialCharacters
+	}
+
+	return( passwordOptions );
+
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {
+function getRandom( arr ) {
+
+	// get random index value
+	const randomIndex = Math.floor(Math.random() * arr.length);
+	
+	// get random item
+	const character = arr[randomIndex];
+
+	return character;
 
 }
 
 // Function to generate password with user input
 function generatePassword() {
 
-	getPasswordOptions();
+	var passwordOptions = getPasswordOptions(),
+		passwordLength = passwordOptions.passwordLength,
+		lowercase = passwordOptions.lowercase,
+		uppercase = passwordOptions.uppercase,
+		numeric = passwordOptions.numeric,
+		symbols = passwordOptions.specialCharacters,
+		characters = [],
+		password = "";
 
+	if ( lowercase ) {
+		characters = characters.concat( lowerCasedCharacters );
+	}
+
+	if ( uppercase ) {
+		characters = characters.concat( upperCasedCharacters );
+	}
+
+	if ( numeric ) {
+		characters = characters.concat( numericCharacters );
+	}
+
+	if ( symbols ) {
+		characters = characters.concat( specialCharacters );
+	}
+
+	for ( var i = 0; i < passwordLength; i++ ) {
+		password += getRandom( characters );
+	}
+
+	return password;
+	
 }
 
 // Get references to the #generate element
