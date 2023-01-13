@@ -98,23 +98,32 @@ function getPasswordOptions() {
 		specialCharacters;
 	
 	/**  PASSWORD LENGTH */
-	var givePasswordLength = function ( message ) {
+
+	var givePasswordLength = function () {
+
+		var showPrompt = function( message ) {
+			return prompt( message );
+		};
+		var input,
+			length;
+
 		do {
-			var input = prompt( message );
-			input = parseInt( input );
-			message = "Enter password length."
-			while ( isNaN( input ) ) {
-				input = givePasswordLength( "Password length must be number." );
-				while ( input < 10 || input > 64 ) {
-					input = givePasswordLength( "Password length must be between 10 to 64." );
-				}
+			if ( input == null || input == "" || input == undefined ) {
+				input = showPrompt( "Enter password length." );
+			} else if ( !( Number.isInteger( Number( input ) ) ) ) {
+				input = showPrompt( "Password length must be a whole number." );
+			} else if ( Number( input ) < 10 || Number( input ) > 64 ) {
+				input = showPrompt( "Password length must be between 10 to 64." );
+			} else {
+				length = input;
 			}
-		} while ( input == null || input == "" );
-		return input;
-		// TODO: If user enters a string starting with number but including NaN character function will return it as integer.
+		} while ( length == null );
+
+		return length;
+
 	}
 
-	passwordLength = givePasswordLength("Enter password length.");
+	passwordLength = givePasswordLength();
 	/**  password length */
 
 	/** LOWERCASE */
