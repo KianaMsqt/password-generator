@@ -88,6 +88,10 @@ header {
   cursor: pointer;
 }
 
+.btn.copy {
+  background-color: rgb(8, 175, 144);
+}
+
 button[disabled] {
   cursor: default;
   background: #c0c7cf;

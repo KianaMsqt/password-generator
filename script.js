@@ -257,13 +257,14 @@ function writePassword() {
 generateBtn.addEventListener('click', writePassword);
 
 
-/**
- * Add this part after adding copy button into HTML file
- * 
-  function copyPassword() {
+// Get references to the #copy element
+var copyBtn = document.querySelector('#copy');
+
+// Copy generated password
+function copyPassword() {
 	var copyText = document.getElementById("password");
 	copyText.select();
 	document.execCommand("copy");  
-  }
- * 
- */
+}
+
+copyBtn.addEventListener('click', copyPassword);
